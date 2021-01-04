@@ -5,6 +5,9 @@ versatility, immutability and support for `async`/`await`. Inspired by
 [validate](https://www.npmjs.com/package/validate) and
 [mongoose](https://mongoosejs.com/) - but altogether a little different.
 
+[Full documentation](https://traverse1984.github.io/schemodo) is a work in
+progress.
+
 ## Installation
 
 Install with `npm`:
@@ -17,6 +20,12 @@ Then use it in your project:
 
 ```javascript
 const sm = require('schemodo');
+```
+
+## Test
+
+```javascript
+npm run test
 ```
 
 ## Create a Schema
