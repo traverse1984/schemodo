@@ -8,6 +8,12 @@ versatility, immutability and support for `async`/`await`. Inspired by
 [Full documentation](https://traverse1984.github.io/schemodo) is a work in
 progress.
 
+## New in 1.1.0
+
+New keywords and associated unit tests for `Array` and `Set`; offering more
+built-in methods for string conversion: `list`, `split`, `trim` and 
+`trimEntries`.
+
 ## Installation
 
 Install with `npm`:

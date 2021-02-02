@@ -42,6 +42,8 @@ This meta-data option is to provide a more meaningful name to a prop than the
 computed path. It doesn't affect functionality. The default `ValidationResult`
 uses this option when generating an error map.
 
+### $default
+
 ### required
 
 Whether or not this prop is required when validating input. Defaults to the
@@ -78,13 +80,17 @@ const schema = new sm.Schema({
 ### Array
 
 * `csv`: Convert comma separated string to array, default `false`
+* `list`: Convert newline separated string to array, default `false`
+* `split`: Convert string to array based on custom separator.
+* `trim`: Before any of above options, trim input string.
+* `trimEntries`: Before any of above options, trim values in output array.
 
 ### BigInt
 
 ### Boolean
 
 * `parse`: Parse common strings to their truthy/falsey values, default `true`
-* `strict`: Fail typecast on values that are not boolean or boolean-like, dependant on strict setting.
+* `strict`: Fail typecast on values that are not boolean or boolean-like, dependant on parse setting.
 
 ### Date
 
@@ -107,6 +113,10 @@ Type check always succeeds
 ### Set
 
 * `csv`: Convert comma separated string to set, default `false`
+* `list`: Convert newline separated string to set, default `false`
+* `split`: Convert string to set based on custom separator.
+* `trim`: Before any of above options, trim input string.
+* `trimEntries`: Before any of above options, trim values in output set.
 
 ### String
 

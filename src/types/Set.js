@@ -1,7 +1,7 @@
 const validators = require('../validators'),
       messages = require('../messages'),
     { prepare } = require('../build'),
-    { iterable, csv } = require('../util');
+    { iterable, split } = require('../util');
 
 const set = module.exports = {
 
@@ -31,8 +31,10 @@ const set = module.exports = {
             return new Set( [ ...value, ] );
         }
 
-        if( prop.csv === true && typeof value === 'string' ){
-            return new Set( csv( value ) );
+        const separated = split( prop, value );
+
+        if( separated ){
+            return new Set( separated );
         }
 
         throw new Error( 'typecast: Unable to cast to Set' );

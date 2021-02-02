@@ -41,11 +41,54 @@ exports.iterable = function iterable( value ){
 };
 
 
+function split( prop, value ){
 
-exports.csv = function csv( value ){
-    return value.split(',').map( val => val.trim() );
-};
+    if( typeof value !== 'string' ){
+        return false;
+    }
 
+    const split = 'split' in prop;
+
+    if( split || prop.csv === true || prop.list === true ){
+
+        if( prop.trim !== false ){
+            value = value.trim();
+        }
+
+        let separator;
+        
+        if( split ){
+        
+            separator = prop.split;
+
+            if( 
+                typeof separator !== 'string' && 
+                ! (separator instanceof RegExp)
+            ){
+                    throw new Error( 'split: Expected String or RegExp' );
+            }
+
+        } else {
+
+            separator = prop.csv === true ? ',' : /[\r\n]+/;
+
+        }
+
+        const entries = value.split( separator );
+
+        if( prop.trimEntries !== false ){
+            return entries.map( val => val.trim() );
+        }
+
+        return entries;
+
+    }
+
+    return false;
+
+}
+
+exports.split = split;
 
 
 exports.minMaxEqual = function minMaxEqual( option ){

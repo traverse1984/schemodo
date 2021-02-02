@@ -1,7 +1,7 @@
 const set = require('./Set'),
       validators = require('../validators'),
       messages = require('../messages'),
-    { iterable, csv } = require('../util');
+    { iterable, split } = require('../util');
 
 module.exports = {
 
@@ -31,8 +31,10 @@ module.exports = {
             return [ ...value, ];
         }
 
-        if( prop.csv === true && typeof value === 'string' ){
-            return csv( value );
+        const separated = split( prop, value );
+
+        if( separated ){
+            return separated;
         }
 
         throw new Error( 'typecast: Unable to cast to Array' );
