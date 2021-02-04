@@ -1,6 +1,8 @@
 const { validate, 
         message, 
-        skip, 
+        passable,
+        skip,
+        returnInput,
         StopProcessing } = require('./util');
 
 
@@ -64,9 +66,13 @@ async function _walk( prop,
     
         const { before, use, after, typecast } = prop;
         
-        if( typecast && value !== undefined && value !== null ){
+        if( typecast && passable( value ) ){
             try {
-                value = typecast( prop, value );
+                value = typecast( 
+                    prop, 
+                    value, 
+                    prop._type.typecast || returnInput
+                );
             }
             catch( err ){
                 throw new _Error( 
@@ -81,7 +87,7 @@ async function _walk( prop,
                 
                 const output = await call( prop, value, skip );
                 
-                if( output !== undefined && output !== null ){
+                if( passable( output ) ){
                     value = output;
                 }
 
@@ -96,7 +102,7 @@ async function _walk( prop,
             await call( prop, value, skip );
         }
         
-        if( value !== undefined && value !== null ){
+        if( passable( value ) ){
         
             const { props, each, _type } = prop;
         
@@ -125,7 +131,7 @@ async function _walk( prop,
         
                         errors.push( ...sub.errors );
                         
-                        if( val !== undefined && val !== null ){
+                        if( passable( val ) ){
                             set( target, subprop.name, val );
                         }
         
@@ -158,7 +164,7 @@ async function _walk( prop,
 
                         }
         
-                        if( val !== undefined && val !== null ){
+                        if( passable( val ) ){
                             add( target, val );
                         }
         
@@ -178,7 +184,7 @@ async function _walk( prop,
 
                 const output = await call( prop, value, skip );
 
-                if( output !== undefined && output !== null ){
+                if( passable( output ) ){
                     value = output;
                 }
 

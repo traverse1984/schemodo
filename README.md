@@ -8,11 +8,12 @@ versatility, immutability and support for `async`/`await`. Inspired by
 [Full documentation](https://traverse1984.github.io/schemodo) is a work in
 progress.
 
-## New in 1.1.0
+## New in 1.1.1
 
-New keywords and associated unit tests for `Array` and `Set`; offering more
-built-in methods for string conversion: `list`, `split`, `trim` and 
-`trimEntries`.
+* `NaN` is now correctly considered a null-like value
+* Custom `typecast` functions get passed the default typecaster as a third
+argument -  making it easier to add to existing functionality.
+* Added more documentation
 
 ## Installation
 
@@ -131,3 +132,11 @@ or:
 ```javascript
 const myschema = sm('myschema');
 ```
+
+## Changelog
+
+### New in 1.1.0
+
+New keywords and associated unit tests for `Array` and `Set`; offering more
+built-in methods for string conversion: `list`, `split`, `trim` and 
+`trimEntries`.

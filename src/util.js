@@ -41,6 +41,16 @@ exports.iterable = function iterable( value ){
 };
 
 
+exports.passable = function passable( value ){
+
+    return value !== undefined
+        && value !== null
+        && value === value;
+
+};
+
+
+
 function split( prop, value ){
 
     if( typeof value !== 'string' ){
@@ -187,6 +197,8 @@ exports.skip = function skip( value ){
     throw new StopProcessing( value );
 };
 
+
+exports.returnInput = input => input;
 
 
 exports.ValidationResult = class ValidationResult {
