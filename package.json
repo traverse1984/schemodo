@@ -1,6 +1,6 @@
 {
   "name": "schemodo",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Define schemas to validate and normalize JavaScript data structures",
   "main": "src/schemodo.js",
   "directories": {
