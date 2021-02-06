@@ -39,7 +39,8 @@ and [Array](/).
 ### required
 
 Whether or not this prop is required when validating input. Defaults to the
-schema's `$required` setting. See [validation](/).
+schema's `$required` setting. Props which are not required are *skipped*.
+See [validation](/validation).
 
 ```javascript
 const schema = new sm.Schema({
@@ -95,8 +96,9 @@ const schema = new sm.Schema({
 });
 ```
 
-> The `typecast` function will never be called with `undefined`, `null`
-or `NaN` as a value.
+> Typecast is always called `synchronously`.
+
+> Typecast will never be called with `undefined`, `null` or `NaN` as a value.
 
 ### $default
 
