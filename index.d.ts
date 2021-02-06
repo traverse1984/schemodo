@@ -13,6 +13,8 @@ declare namespace schemodo {
 
     declare class Schema {
 
+        static defaults: SchemaOptions;
+
         constructor( schema: SchemaDefinition );
 
         processSync ( value: any,
@@ -67,17 +69,29 @@ declare namespace schemodo {
     };
 
 
-    interface SchemaDefinition {
-        $root?: Prop | object;
+    interface SchemaOptions {
         $name?: string;
         $typecast?: boolean;
         $required?: boolean;
         $async?: boolean;
-        $validators?: Object<string, function>;
-        $messages?: Object<string, function | any>;
+        $validators?: {
+            [ key: string ]: function;
+        };
+        $messages?: {
+            [ key: string ]: function;
+        };
         $result?: ValidationResultClass;
         $error?: ValidationErrorClass;
     }
+
+    interface SchemaDefinition extends SchemaOptions {
+        $root?: Prop | object;
+        $messages?: {
+            [ key: string ]: function | any;
+        };
+        [ key: string ]: any;
+    };
+
 
     interface Prop {
         type: object | null;
@@ -85,6 +99,7 @@ declare namespace schemodo {
         path: string;
         _type: TypeDefinition;
         _schema: Schema;
+        [ key: string ]: any;
     }
 
 
