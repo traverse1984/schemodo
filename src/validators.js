@@ -56,7 +56,7 @@ module.exports = {
 
         if( isEqual && value !== equal ) return false;
         if( isMin && value < min ) return false;
-        if( isMax && value < max ) return false;
+        if( isMax && value > max ) return false;
 
         return true;
 
